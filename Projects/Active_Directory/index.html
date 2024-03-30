@@ -1,7 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+    <head>
+        <!-- Bootstrap style sheet -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="https://DoanAndy.github.io">Andy Doan</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="https://DoanAndy.github.io">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resume/resume.pdf">Resume</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://DoanAndy.github.io/contact.html">Contact</a>
+            </li>
+
+          </ul>
+
+        </div>
+    </nav>
+      
+    <main role="main">
+      
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <img src="assets\images\Splunk_logo.png" class="img-thumbnail rounded float-start" alt="...">
+                    <img src="assets\images\microsoft-active-directory5035.jpg" class="img-thumbnail rounded float-start" alt="...">
+                </div>
+                <div class="col-8">
+                    <h1 class="display-3">Active Directory - Splunk Virtual Network</h1>
+                    <p>In this project I set up and configured 4 virtual systems on the same network. The simulated network features a domain controller with Active Directory enabled, a Splunk server instance and regular client machine. Once everything is set up I use an Kali Linux VM to simulate an unauthorized attack on a client.</p>
+                    <p>
+                        <ul>
+                            <li>
+                                <b>Status:</b> Complete
+                            </li>
+                            <li>
+                                <b>Category:</b> Lab, Demostration, Practice
+                            </li>
+                            <li>
+                                <b>Domain:</b> Cybersecurity, Windows, Linux, SIEM
+                            </li>
+                            <li>
+                                <b>Toolset:</b> Kali Linux, Windows 10 Pro, VirtualBox, Windows Server 2022, Ubuntu Server, Splunk Enterprise, Crowbar, PowerShell
+                            </li>
+                          
+                        </ul>
+                    </p>
+                </div>
+
+            </div>
+            
+            
+
+            
+          </div>
+        </div>
+      
+        <div class="container">
+            
+       
+            <div class="row">
+                <div class="col-8">
+                    <h3>Goal</h3>
+                    <p>
+                        The goal of this project is to demonstrate my abilities to set up and configure a network in a virtual laboratory setting and practice using industry standard tools. I will also simulate an attack on this network using readily available tools and techniques.
+                    </p>
+                    <p>
+                        If successful the network will be configured exactly like the below diagram and feature the following:
+                        <ul>
+                            <li>
+                                Windows Server 2022 with a static IP, Active Directory enabled, Splunk Universal Forwarder and Sysmon installed
+                            </li>
+                            <li>
+                                Ubuntu Server with a static IP and Splunk Server installed
+                            </li>
+                            <li>
+                                Windows 10 Pro with an IP assigned using DHCP with Splunk Universal Forwarder and Sysmon installed
+                            </li>
+                            <li>
+                                Kali Linux with a static IP and the default configuration
+                            </li>
+                        </ul>
+                    </p>
+                    <img src="assets\images\ActiveDirectory-layout.png"  alt="Network Diagram">
+                </div>
+                <div class="col-4">
+                   <!-- <img src="assets\images\projects.png" class="img-thumbnail rounded float-finish" alt="...">-->
+                </div>
+
+            </div>
+            <hr>
+            
+            
+            <div class="row">
+                <div class="col-8">
+                    <h3>Process</h3>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, adipisci optio. Cumque possimus omnis fugiat nam commodi repudiandae saepe praesentium eaque veritatis! Ullam ab cupiditate, suscipit iste velit cumque eius?
+                    </p>
+                </div>
+                <div class="col-4">
+                    <!--<img src="assets\images\projects.png" class="img-thumbnail rounded float-start" alt="...">-->
+                </div>
+
+
+
+            </div>
+            <hr>
+            
+           
+            <div class="row">
+                <div class="col-8">
+                    <h3>Result</h3>
+                    <p>
+                        <b>Summary:</b> For this project I was able to successful deploy and configure four different operating systems on a simulated network. Each device was setup according to it's role in the exercise and they all functioned properly based on the plan. I was able to deploy an instance of Splunk in the simulation and pass telemetry to the service from two different network devices. Active Directory was installed on the domain controller and user accounts were created. The target endpoint was able to join the domain and act like an regular user with limited permissions. Once configured I was able to launch a couple of different attacks on the network using available tools and techniques. 
+                    </p>
+                    <p>
+                        Working through this material was very rewarding for me. I was able to use a few tools that I have limited experience with (Splunk, and Active Directory) as well as increase my skills with others I am more familiar with(Linux, VirtualBox). I was also able to see how easily attacks against a network can happen when systems are not configured properly and know vulnerabilities are not accounted for. 
+                    </p>
+                    <p>    
+                        The most rewarding aspect of this was definitely seeing the direct relationship between the input and output with an industry standard SIEM tool. I was able to launch an attack and then immediately login to Splunk to see what the logs looked like. This was a valuable experience for me and I am sure to expand on this foundation and I continue to practice and study these common techniques.
+                    </p>
+                    <p>
+                        <b>Conclusion:</b> Overall a successful and entertaining experience. Lots of really cool tools and techniques demonstrated through the process. I am very grateful for the opportunity and thankful to this YouTuber for putting it together for me! 
+                    </p>
+                </div>
+                <div class="col-4">
+                    <!--<img src="assets\images\projects.png" class="img-thumbnail rounded float-finish" alt="...">-->
+                </div>
+
+            </div>
+            <hr>
+            <h3>Resources</h3>
+
+            <hr>
+
+
+        </div>
+        
+      
+    </main>
+      
+    <footer class="container">
+        <p>&copy; Andy Doan 2024</p>
+    </footer>
+
+<!-- bootstrap Scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- End of Bootstrap scripts -->
 </body>
 </html>
