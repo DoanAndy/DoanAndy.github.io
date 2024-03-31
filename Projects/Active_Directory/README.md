@@ -49,11 +49,25 @@ Splunk Enterprise was installed from the shared directory and the default Splunk
 
 >Step Three: Add Splunk Universal Forwarder to the Domain Controller and the Windows 10 machine.
 
-The setup process for both the Window Server 2022 and the Windows 10 Pro machine were the same. Splunk Universal Forwarder was downloaded and installed from the Splunk website and installed normally and configured to send logs to 192.168.10.10:9997. Sysmon was downloaded from a microsoft page from a google search. I also used a configuration for sysmon that was posted on a GitHub users page (this was recommended by a youtuber). Sysmon was installed using PowerShell and the configuration .XML file. 
+The setup process for both the Window Server 2022 and the Windows 10 Pro machine were the same. Splunk Universal Forwarder was downloaded and installed from the Splunk website and installed normally and configured to send logs to 192.168.10.10:9997. Sysmon was downloaded from a Microsoft page from a google search. I also used a configuration for sysmon that was posted on a GitHub users page (this was recommended by a youtuber). Sysmon was installed using PowerShell and the configuration .XML file. 
 
 Once both devices were set up with the forwarder and sysmon was configured I was able to see telemetry data flowing to the Splunk server. The Splunk server need to be set up to look for inputs on the "endpoint" and after that searches for "index=endpoint" showed data coming from 2 different hosts (Windows Server and Windows 10). 
 
 >Step Four: Installing Active Directory
+
+On the server computer I installed and configured Active Director via Server Manager -> Manage -> Add Roles and Features. I created the domain ANDY.LOCAL and added to organizational units (IT and HR). I then created two fictional users (Teri Smith to HR and Jenny Smith to IT) and assigned them to the org units. 
+
+Once the server was set up I went to the Windows 10 instance and joined the newly created domain. I changed the network settings to reflect the desired state pointing to 192.168.10.7 as the DNS and logged in with one of the fictional user accounts. From here I was able to test that I had access to the network and that i could ping the splunk server. 
+
+In preparation for the next step I prepared the Windows 10 PC for the attack phase by enabling a service that is disabled by default. I enabled remote desktop on the target machine and left it running and signed in. 
+
+Step Five: Attack Target PC
+
+From the Kali Linux VM I installed crowbar and unzipped the passwords file bundled with the package. I edited the password file to include the actual password I set on the fictional user account for purposes of this test so that I would for sure get a positive result. Crowbar attempted to sign in on port 3389 to the rdp service using the account name and IP address I provided using every password in the password file. 
+
+pic of kali-crowbar
+
+
 
 
 
