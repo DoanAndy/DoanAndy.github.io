@@ -12,6 +12,13 @@
 
 The goal of this project is to demonstrate my abilities to set up and configure a network in a virtual laboratory setting and practice using industry standard tools. I will also simulate an attack on this network using readily available tools and techniques.
 
+If successful the network will be configured exactly like the below diagram and feature the following:
+
+* Windows Server 2022 with a static IP, Active Directory enabled, Splunk Universal Forwarder and Sysmon installed
+* Ubuntu Server with a static IP and Splunk Server installed
+* Windows 10 Pro with an IP assigned using DHCP with Splunk Universal Forwarder and Sysmon installed
+* Kali Linux with a static IP and the default configuration
+
 #Process
 
 Downloads
@@ -20,15 +27,45 @@ Windows Server 2022 https://www.microsoft.com/en-us/evalcenter/evaluate-windows-
 Ubuntu Server 22.04.4 https://ubuntu.com/download/server
 Splunk Enterprise for Linux
 Splunk Universal Forwarder Windows 10
-Sysmon
+Sysmon https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
 Crowbar
+
+>Step One: Install and configure the virtual machines
+
+The plan is to have all of the VMs running on a single computer. I have a Windows 10 machine with 32 gigs of ram and this will handle everything without problems. The first step was to download and install all four operation systems on the VirtualBox. The OS were downloaded from there respective sites one at a time. They were all assigned 4 gigabytes of ram and 50 gigabytes of file space except the Ubuntu machine it was given 8 gigabytes ram and 100 gigabytes disk space to give it a little more power for running queries. I already had VirtualBox and baseline Kali Linux instances running on my machine. 
+
+I created a NAT Network on VirtualBox and connected all of the VMs to this network.I named the network AD-Project and set the IPv4 Prefix to 192.168.10.0/24. Before moving to the next step I created a snapshot of each OS instance and named it "Setup Baseline". 
+
+Picture of Vbox NAT-network
+
+>Step Two: Setup Splunk Server
+
+I edited the 00-installer-config.yaml to reflect the desired state of the machine and set the static IP to 192.168.10.10. On the Ubuntu version I deployed I was not able to directly apply netplan until I installed openvswitch-switch-dpdk firsts. 
+Pic of  00-installer-config.yaml
+
+The Splunk Enterprise for Linux was downloaded on the parent machine so I needed to install virtualbox-guest-additions-iso, and virtualbox-guest-utils in order to mount a shared drive between the VM parent and the Ubuntu instance. I also needed to set up the share in VirtualBox and point it to the directory containing the download. 
+
+Splunk Enterprise was installed from the shared directory and the default Splunk user was created. I enabled Splunk to run on startup via "sudo ./splunk enable boot-start -user splunk". Splunk was now running on the Ubuntu server and the dashboard is reachable via the browser at 192.168.10.10:8000 although no data was currently flowing to it.
+
+>Step Three: Add Splunk Universal Forwarder to the Domain Controller and the Windows 10 machine.
+
+The setup process for both the Window Server 2022 and the Windows 10 Pro machine were the same. Splunk Universal Forwarder was downloaded and installed from the Splunk website and installed normally and configured to send logs to 192.168.10.10:9997. Sysmon was downloaded from a microsoft page from a google search. I also used a configuration for sysmon that was posted on a GitHub users page (this was recommended by a youtuber). Sysmon was installed using PowerShell and the configuration .XML file. 
+
+Once both devices were set up with the forwarder and sysmon was configured I was able to see telemetry data flowing to the Splunk server. The Splunk server need to be set up to look for inputs on the "endpoint" and after that searches for "index=endpoint" showed data coming from 2 different hosts (Windows Server and Windows 10). 
+
+>Step Four: Installing Active Directory
+
+
+
+* Windows 10 Installation Media tool https://www.microsoft.com/en-ca/software-download/windows10
+* Windows Server 2022 https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2022
+* Ubuntu Server 22.04.4 https://ubuntu.com/download/server
 
 Setup
 
 * Add Windows 10 Pro instance to VirtualBox
 	* User: Win10_User. 
-	* Security Questions: What city were you born in? st thomas, First School? elgin court, Childhood Nickname? spike
-	*
+	
 * Add Kali Linux Instance to VirtualBox
 
 * Add Windows Server 2022 instance to VirtualBox
@@ -59,7 +96,7 @@ Setup
 	* Manually created the inputs.conf file and installed it in the etc/system/local folder.
 	* in the windows services utility set Splunk to run as a local account on the host and restarted the system.
 		* this is required when ever there are manual edits done to the inputs.cong file.
-	* Checking 192.168.10.10 can see that the Splunk service is running on the Ubuntu service.
+	* Checking 192.168.10.10:8000 can see that the Splunk service is running on the Ubuntu service.
 	* configure the Splunk server to look for the inputs from the "endpoint" (Target PC)
 	* Doing a Splunk search "index=endpoint" there is actual log data being received from 3 of the hosts I configured.
 	
@@ -120,7 +157,11 @@ MITRE ATT&CK framework https://attack.mitre.org/
 Network drawing http://draw.io
 
 
-Brief outline available on this youtube video https://www.youtube.com/watch?v=-iVqueVIhuQ
+Active Directory Project Video 1 https://www.youtube.com/watch?v=mWqYyl89QaY&t=525s
+Active Directory Project Video 2 https://www.youtube.com/watch?v=2cEj3bS5C0Q
+Active Directory Project Video 3 https://www.youtube.com/watch?v=uXRxoPKX65Q&t=897s
+Active Directory Project Video 4 https://www.youtube.com/watch?v=1XeDht_B-bA&t=5s
+Active Directory Project Video 5 https://www.youtube.com/watch?v=orq-OPIdV9M&t=923s
 
 #Issues
 
