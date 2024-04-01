@@ -67,8 +67,9 @@ From the Kali Linux VM I installed crowbar and unzipped the passwords file bundl
 
 pic of kali-crowbar
 
+This demonstrates a weakness in the Remote Desktop Protocol to dictionary attacks. If EDP in enabled and the attacker is able to obtain a valid user name in Active Directory they could launch a dictionary attack they may be successful if strong passwords are not enforced. After this "attack" I was able to see in Splunk evidence of a number of almost simultaneous failed login attempts followed by a successful attempt all attributed to a IP address that would not be a part of a authorized list. This type of activity may alert a system monitor to suspicious ativity from this user and could trigger action to block the IP at the firewall.
 
-
+On the target system I also installed AtomicRedTeam via Powershell. Once installed I was able to run Atomic 1136.001 "Persistence Create Account - Local Account" and successfully able to create an account. I also ran 1059.001 "Command and Scripting Interpreter - PowerShell" and  failed due to lack of access. These "attacks" are directly linked to common attack types from the MITRE ATT&CK framework and demonstrate vulnerability (in the case of 1136.001) to the default configuration. If an attacked gain access to an active directory account they would be able to move laterially into a new account to gain persistence in the network. 
 
 
 * Windows 10 Installation Media tool https://www.microsoft.com/en-ca/software-download/windows10
