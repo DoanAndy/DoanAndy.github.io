@@ -162,7 +162,7 @@
                     <p>
                         From the Kali Linux VM I installed crowbar and unzipped the passwords file bundled with the package. I edited the password file to include the actual password I set on the fictional user account for purposes of this test so that I would for sure get a positive result. Crowbar attempted to sign in on port 3389 to the rdp service using the account name and IP address I provided using every password in the password file. 
                     </p>
-                    <img src="Projects\Active_Directory\assets\images\kali-crowbar-success.png" alt="Crowbar successful attack">
+                    <img src="assets\images\kali-crowbar-success.png" alt="Crowbar successful attack">
                     <p>
                         This demonstrates a weakness in the Remote Desktop Protocol to dictionary attacks. If EDP in enabled and the attacker is able to obtain a valid user name in Active Directory they could launch a dictionary attack they may be successful if strong passwords are not enforced. After this "attack" I was able to see in Splunk evidence of a number of almost simultaneous failed login attempts followed by a successful attempt all attributed to a IP address that would not be a part of a authorized list. Failed attempts showed as EventCode 4625 (An account failed to log on) This type of activity may alert a system monitor to suspicious activity from this user and could trigger action to block the IP at the firewall.
                     </p>
